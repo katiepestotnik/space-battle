@@ -31,9 +31,19 @@ h1{
     color: #fff;
 }
 .enterprise-img{
+    display: flex;
+    justify-content: center;
     margin: 2rem;
+
 }
 
 .enterprise-img > img{
     width: 40%;
+}
+
+.message {
+    color: #ff0a0a;
+    font-family: 'Kanit', sans-serif;
+    font-size: 1.5rem;
+    text-align: center;
 }

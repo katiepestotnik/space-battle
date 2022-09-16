@@ -115,10 +115,11 @@ const playGame = () => {
   }
 }
 const quitGame = () => {
+  document.querySelector('.message').innerHTML = `All hands, RETREAT! Engage warp 7`
   showImg('https://qph.cf2.quoracdn.net/main-qimg-fe15e77a9dea4f2973f6f5bb533e81f3-lq')
   setTimeout(() => {
     location.reload()
-  }, 500)
+  }, 900)
 }
 
 document.querySelector('.attacker').addEventListener('click', playGame)
