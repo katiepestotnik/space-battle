@@ -10,53 +10,75 @@ const randomGenerator = (min, max) => {
 const randomAccuracy = (min, max) => {
   return parseFloat((Math.random() * (max - min) + min).toFixed(1))
 };
-const enterprise = {
-  hull: 20,
-  firepower: 5,
-  accuracy: 7,
-  attack: function () {},
-};
-
 const aliens = [
   (ship1 = {
     hull: randomGenerator(3, 6),
     firepower: randomGenerator(2, 4),
     accuracy: randomAccuracy(0.6, 0.8),
-    attack: function () {},
+    attack: function () {
+        if(Math.random() < this.accuracy)enterprise.hull -= this.firepower
+    },
   }),
   (ship2 = {
     hull: randomGenerator(3, 6),
     firepower: randomGenerator(2, 4),
     accuracy: randomAccuracy(0.6, 0.8),
-    attack: function () {},
+    attack: function () {
+        if(Math.random() < this.accuracy)enterprise.hull -= this.firepower
+    },
   }),
   (ship3 = {
     hull: randomGenerator(3, 6),
     firepower: randomGenerator(2, 4),
     accuracy: randomAccuracy(0.6, 0.8),
-    attack: function () {},
+    attack: function () {
+        if(Math.random() < this.accuracy)enterprise.hull -= this.firepower
+    },
   }),
   (ship4 = {
     hull: randomGenerator(3, 6),
     firepower: randomGenerator(2, 4),
     accuracy: randomAccuracy(.6, .8),
-    attack: function () {},
+    attack: function () {
+        if(Math.random() < this.accuracy)enterprise.hull -= this.firepower
+    },
   }),
   (ship5 = {
     hull: randomGenerator(3, 6),
     firepower: randomGenerator(2, 4),
     accuracy: randomAccuracy(.6, .8),
-    attack: function () {},
+    attack: function () {
+        if(Math.random() < this.accuracy)enterprise.hull -= this.firepower
+    },
   }),
   (ship6 = {
     hull: randomGenerator(3, 6),
     firepower: randomGenerator(2, 4),
     accuracy: randomAccuracy(.6, .8),
-    attack: function () {},
+    attack: function () {
+        if(Math.random() < this.accuracy)enterprise.hull -= this.firepower
+    },
   }),
 ]
+const enterprise = {
+    hull: 20,
+    firepower: 5,
+    accuracy: 7,
+    attack: function () {
+        aliens[0].hull -= this.firepower
+    },
+};
 
-const playGame = () => {}
+const playGame = () => {
+    while (enterprise.hull > 0) {
+        enterprise.attack()
+        aliens[0].attack()
+        console.log(enterprise.hull, aliens[0].hull)
+        if(aliens[0].hull <= 0) break
+
+    }
+}
+playGame()
 
 aliens.forEach((ship) => {
 
