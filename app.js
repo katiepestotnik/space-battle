@@ -91,7 +91,13 @@ const enterprise = {
         }
     },
 };
+const showImg = (src) => {
+  const enterpriseImg = document.createElement('img')
+  enterpriseImg.src = src
+  document.querySelector('.enterprise-img').append(enterpriseImg)
+}
 const playGame = () => {
+  showImg("https://dwgyu36up6iuz.cloudfront.net/heru80fdn/image/upload/c_fill,d_placeholder_wired.png,fl_progressive,g_face,h_1080,q_80,w_1920/v1469050573/wired_nasa-fact-checks-star-trek-s-starship-enterprise.jpg")
   while (enterprise.hull > 0) {
     aliens.forEach((alien, idx) => {
       while (alien.hull > 0) {
@@ -108,6 +114,14 @@ const playGame = () => {
     if(aliens[5].hull <= 0)break
   }
 }
-playGame()
+const quitGame = () => {
+  showImg('https://qph.cf2.quoracdn.net/main-qimg-fe15e77a9dea4f2973f6f5bb533e81f3-lq')
+  setTimeout(() => {
+    location.reload()
+  }, 500)
+}
+
+document.querySelector('.attacker').addEventListener('click', playGame)
+document.querySelector('.retreat').addEventListener('click', quitGame)
 
 

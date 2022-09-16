@@ -1,0 +1,39 @@
+@import url('https://fonts.googleapis.com/css2?family=Audiowide&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@600&display=swap');
+
+body {
+    font-size: 10px;
+    background-color: #000;
+    background-image: url(https://images.pexels.com/photos/998641/pexels-photo-998641.jpeg?auto=compress&cs=tinysrgb&w=800);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+h1{
+    font-family: 'Audiowide', 'sans-serif';
+    text-align: center;
+    font-size: 3rem;
+    color: #fff;
+}
+
+.btn-style {
+    display: flex;
+    justify-content: space-around;
+}
+.btn-style > button {
+    font-size: 1.5rem;
+    padding: .5rem;
+    letter-spacing: 2px;
+    font-family: 'Kanit', sans-serif;
+}
+.btn-style > button:hover{
+    background-color: #000ee8;
+    color: #fff;
+}
+.enterprise-img{
+    margin: 2rem;
+}
+
+.enterprise-img > img{
+    width: 40%;
+}
