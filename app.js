@@ -16,7 +16,14 @@ const aliens = [
     firepower: randomGenerator(2, 4),
     accuracy: randomAccuracy(0.6, 0.8),
     attack: function () {
-        if(Math.random() < this.accuracy)enterprise.hull -= this.firepower
+      console.log('Alien ship attacking...')
+      if (Math.random() < this.accuracy) {
+        console.log(`Alien ship accuracy high, attack!`)
+        enterprise.hull -= this.firepower
+        console.log(`After successful alien attack, Enterprise is at ${enterprise.hull} strength.`)
+      } else {
+        console.log('Alien ship misses attack!')
+      }
     },
   }),
   (ship2 = {
@@ -24,7 +31,14 @@ const aliens = [
     firepower: randomGenerator(2, 4),
     accuracy: randomAccuracy(0.6, 0.8),
     attack: function () {
-        if(Math.random() < this.accuracy)enterprise.hull -= this.firepower
+      console.log('Alien ship attacking...')
+      if (Math.random() < this.accuracy) {
+        console.log(`Alien ship accuracy high, attack!`)
+        enterprise.hull -= this.firepower
+        console.log(`After successful alien attack, Enterprise is at ${enterprise.hull} strength.`)
+      } else {
+        console.log('Alien ship misses attack!')
+      }
     },
   }),
   (ship3 = {
@@ -32,7 +46,14 @@ const aliens = [
     firepower: randomGenerator(2, 4),
     accuracy: randomAccuracy(0.6, 0.8),
     attack: function () {
-        if(Math.random() < this.accuracy)enterprise.hull -= this.firepower
+      console.log('Alien ship attacking...')
+      if (Math.random() < this.accuracy) {
+        console.log(`Alien ship accuracy high, attack!`)
+        enterprise.hull -= this.firepower
+        console.log(`After successful alien attack, Enterprise is at ${enterprise.hull} strength.`)
+      } else {
+        console.log('Alien ship misses attack!')
+      }
     },
   }),
   (ship4 = {
@@ -40,7 +61,14 @@ const aliens = [
     firepower: randomGenerator(2, 4),
     accuracy: randomAccuracy(.6, .8),
     attack: function () {
-        if(Math.random() < this.accuracy)enterprise.hull -= this.firepower
+      console.log('Alien ship attacking...')
+      if (Math.random() < this.accuracy) {
+        console.log(`Alien ship accuracy high, attack!`)
+        enterprise.hull -= this.firepower
+        console.log(`After successful alien attack, Enterprise is at ${enterprise.hull} strength.`)
+      } else {
+        console.log('Alien ship misses attack!')
+      }
     },
   }),
   (ship5 = {
@@ -48,7 +76,14 @@ const aliens = [
     firepower: randomGenerator(2, 4),
     accuracy: randomAccuracy(.6, .8),
     attack: function () {
-        if(Math.random() < this.accuracy)enterprise.hull -= this.firepower
+      console.log('Alien ship attacking...')
+      if (Math.random() < this.accuracy) {
+        console.log(`Alien ship accuracy high, attack!`)
+        enterprise.hull -= this.firepower
+        console.log(`After successful alien attack, Enterprise is at ${enterprise.hull} strength.`)
+      } else {
+        console.log('Alien ship misses attack!')
+      }
     },
   }),
   (ship6 = {
@@ -56,7 +91,14 @@ const aliens = [
     firepower: randomGenerator(2, 4),
     accuracy: randomAccuracy(.6, .8),
     attack: function () {
-        if(Math.random() < this.accuracy)enterprise.hull -= this.firepower
+      console.log('Alien ship attacking...')
+      if (Math.random() < this.accuracy) {
+        console.log(`Alien ship accuracy high, attack!`)
+        enterprise.hull -= this.firepower
+        console.log(`After successful alien attack, Enterprise is at ${enterprise.hull} strength.`)
+      } else {
+        console.log('Alien ship misses attack!')
+      }
     },
   }),
 ]
@@ -64,22 +106,32 @@ const enterprise = {
     hull: 20,
     firepower: 5,
     accuracy: 7,
-    attack: function () {
-        aliens[0].hull -= this.firepower
+    attack: function (alien) {
+        console.log('Enterprise attacking...')
+        alien.hull -= this.firepower
+        if (alien.hull <= 0) {
+          console.log('Alien ship destroyed!')
+        } else {
+          console.log(`Enterprise attacked with ${this.firepower} phasers. The alien's shield levels are now at ${alien.hull} strength.`)
+        }
     },
 };
 
 const playGame = () => {
-    while (enterprise.hull > 0) {
-        enterprise.attack()
-        aliens[0].attack()
-        console.log(enterprise.hull, aliens[0].hull)
-        if(aliens[0].hull <= 0) break
+  while (enterprise.hull > 0) {
+    aliens.forEach((alien) => {
+      while (alien.hull > 0) {
+        enterprise.attack(alien)
+        alien.attack()
+        if (enterprise.hull <= 0) {
+          console.log('Enterprise destroyed')
+          break
+         } 
+      }
 
-    }
+    })
+  }
 }
 playGame()
 
-aliens.forEach((ship) => {
 
-})
