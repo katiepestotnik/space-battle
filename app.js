@@ -11,13 +11,22 @@ const randomAccuracy = (min, max) => {
   return parseFloat((Math.random() * (max - min) + min).toFixed(1))
 };
 const alienAttack = (name, accuracy, firepower) => {
-  console.log(`${name} attacking...`)
-  if (Math.random() < accuracy) {
-    console.log(`${name} accuracy high, attack!`)
+  const alienAttack = document.createElement('p')
+  alienAttack.innerHTML = `${name} attacking...`
+  document.querySelector('.log').append(alienAttack)
+  console.log(accuracy)
+  if (Math.random() <= accuracy) {
+    const precise = document.createElement('p')
+    precise.innerHTML = `${name} accuracy high, attack!`
+    document.querySelector('.log').append(precise)
     enterprise.hull -= firepower
-    console.log(`After successful ${name}, Enterprise is at ${enterprise.hull} strength.`)
+    const success = document.createElement('p')
+    success.innerHTML = `After successful attack by the ${name}, Enterprise is at ${enterprise.hull} strength.`
+    document.querySelector('.log').append(success)
   } else {
-    console.log(`${name} miss attack!`)
+    const miss = document.createElement('p')
+    miss.innerHTML = `${name} miss attack!`
+    document.querySelector('.log').append(miss)
   }
 }
 
@@ -26,7 +35,7 @@ const aliens = [
     name: 'Romulans',
     hull: randomGenerator(5, 10),
     firepower: randomGenerator(2, 4),
-    accuracy: randomAccuracy(0.6, 0.8),
+    accuracy: randomAccuracy(.6, .8),
     attack: function () {
       alienAttack(this.name, this.accuracy, this.firepower)
     },
@@ -35,18 +44,18 @@ const aliens = [
     name: 'Cardasians',
     hull: randomGenerator(3, 6),
     firepower: randomGenerator(2, 4),
-    accuracy: randomAccuracy(0.6, 0.8),
+    accuracy: randomAccuracy(.6, .8),
     attack: function () {
-      alienAttack(this.name)
+      alienAttack(this.name, this.accuracy, this.firepower)
     },
   }),
   (ship3 = {
     name: 'Borg',
     hull: randomGenerator(6, 15),
     firepower: randomGenerator(2, 4),
-    accuracy: randomAccuracy(0.6, 0.8),
+    accuracy: randomAccuracy(.6, .8),
     attack: function () {
-      alienAttack(this.name)
+      alienAttack(this.name, this.accuracy, this.firepower)
     },
   }),
   (ship4 = {
@@ -55,7 +64,7 @@ const aliens = [
     firepower: randomGenerator(2, 4),
     accuracy: randomAccuracy(.6, .8),
     attack: function () {
-      alienAttack(this.name)
+      alienAttack(this.name, this.accuracy, this.firepower)
     },
   }),
   (ship5 = {
@@ -64,7 +73,7 @@ const aliens = [
     firepower: randomGenerator(2, 4),
     accuracy: randomAccuracy(.6, .8),
     attack: function () {
-      alienAttack(this.name)
+      alienAttack(this.name, this.accuracy, this.firepower)
     },
   }),
   (ship6 = {
@@ -73,7 +82,7 @@ const aliens = [
     firepower: randomGenerator(2, 4),
     accuracy: randomAccuracy(.6, .8),
     attack: function () {
-      alienAttack(this.name)
+      alienAttack(this.name, this.accuracy, this.firepower)
     },
   }),
 ]
@@ -81,15 +90,21 @@ const enterprise = {
     hull: 20,
     firepower: 5,
     accuracy: 7,
-    attack: function (alien) {
-        console.log(`Enterprise attacking the ${alien.name} with ${this.firepower} phasers and the ${alien.name} ship as a hull strength of ${alien.hull}`)
-        alien.hull -= this.firepower
-        if (alien.hull <= 0) {
-          console.log(`The ${alien.name} are destroyed. Their hull strength is ${alien.hull}`)
-        } else {
-          console.log(`Enterprise attacked with ${this.firepower} phasers. The ${alien.name} shield levels are now at ${alien.hull} strength.`)
-        }
-    },
+  attack: function (alien) {
+    const message = document.createElement('p')
+    message.innerHTML = `Enterprise attacking the ${alien.name} with ${this.firepower} phasers and the ${alien.name} ship as a hull strength of ${alien.hull}`
+    document.querySelector('.log').append(message)
+    alien.hull -= this.firepower
+    if (alien.hull <= 0) {
+      const destroyed = document.createElement('p')
+      destroyed.innerHTML = `The ${alien.name} are destroyed. Their hull strength is ${alien.hull}`
+      document.querySelector('.log').append(destroyed)
+    } else {
+      const survived = document.createElement('p')
+      survived.innerHTML = `Enterprise attacked with ${this.firepower} phasers. The ${alien.name} shield levels are now at ${alien.hull} strength.`
+      document.querySelector('.log').append(survived)
+    }
+  },
 };
 const showImg = (src) => {
   const enterpriseImg = document.createElement('img')
@@ -100,18 +115,24 @@ const playGame = () => {
   showImg("https://dwgyu36up6iuz.cloudfront.net/heru80fdn/image/upload/c_fill,d_placeholder_wired.png,fl_progressive,g_face,h_1080,q_80,w_1920/v1469050573/wired_nasa-fact-checks-star-trek-s-starship-enterprise.jpg")
   while (enterprise.hull > 0) {
     aliens.forEach((alien, idx) => {
-      while (alien.hull > 0) {
+      while (alien.hull > 0 && enterprise.hull >0) {
         enterprise.attack(alien)
         if (alien.hull > 0) {
           alien.attack()
         }
         if (alien.hull <= 0 && idx === 5) {
-          console.log(`All alien ships destroyed, Enterprise is victorious!!`)
+          document.querySelector('.winner').innerHTML = `All enemy ships destroyed, Enterprise is victorious!!`
+          break
+        }
+        if (enterprise.hull <= 0) {
+          const message = document.querySelector('.winner')
+          message.innerHTML = `Enterprise detroyed`
+          message.style.color = '#ff0a0a'
           break
         }
       }
     })
-    if(aliens[5].hull <= 0)break
+    if (aliens[5].hull <= 0) break
   }
 }
 const quitGame = () => {
