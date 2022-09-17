@@ -84,7 +84,7 @@ const aliens = [
   }),
 ]
 const enterprise = {
-    hull: 2,
+    hull: 20,
     firepower: 5,
     accuracy: 7,
   attack: function (alien) {
