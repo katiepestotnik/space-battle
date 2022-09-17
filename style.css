@@ -15,19 +15,38 @@ h1{
     font-size: 3rem;
     color: #fff;
 }
-
-.btn-style {
-    display: flex;
-    justify-content: space-around;
-}
-.btn-style > button {
+.retreat{
+    height: 3rem;
+    display: inline-block;
     font-size: 1.5rem;
     padding: .5rem;
     letter-spacing: 2px;
     font-family: 'Kanit', sans-serif;
+    margin-right: 3rem;
 }
-.btn-style > button:hover{
-    background-color: #000ee8;
+.btn-container {
+    display: flex;
+    justify-content: space-between;
+}
+.atk-container{
+    display: flex;
+    gap: 1rem;
+}
+.atk-container > div > button{
+    font-size: 1.5rem;
+    padding: .5rem;
+    letter-spacing: 2px;
+    font-family: 'Kanit', sans-serif;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    margin-left: 2rem;
+}
+.atk-container > div > button:hover{
+    background-color: #6aff22;
+}
+.retreat:hover{
+    background-color: #ff0a0a;
     color: #fff;
 }
 .enterprise-img{
@@ -36,11 +55,13 @@ h1{
     margin: 2rem;
 
 }
-
 .enterprise-img > img{
     width: 40%;
 }
-
+img{
+    height: 250px;
+    width:250px;
+}
 .message {
     color: #ff0a0a;
     font-family: 'Kanit', sans-serif;
