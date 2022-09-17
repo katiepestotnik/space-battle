@@ -59,13 +59,13 @@ h1{
     width: 40%;
 }
 img{
-    height: 250px;
-    width:250px;
+    height: 15rem;
+    width: 15rem;
 }
 .message {
-    color: #ff0a0a;
+    color: #fff;
     font-family: 'Kanit', sans-serif;
-    font-size: 1.5rem;
+    font-size: 2rem;
     text-align: center;
 }
 .winner {
@@ -74,6 +74,12 @@ img{
     font-size: 2rem;
     text-align: center;
     padding: 2rem;
+}
+.instructions{
+    color: #fff;
+    font-family: 'Kanit', sans-serif;
+    font-size: 2rem;
+    padding: 1rem;
 }
 p {
     color: #fff;

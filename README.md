@@ -1,5 +1,5 @@
 # Space Battle
 
-Battle 6 alien ships in the browser and try to defeat them all!
+Captian the USS Enterprise and defeat all their enemies!
 
 [Live Site](https://katiepestotnik.github.io/space-battle-katie/)
