@@ -147,7 +147,9 @@ const quitGame = () => {
   document.querySelector('.retreat').remove()
   document.querySelector('.atk-container').remove()
   document.querySelector('.instructions').remove()
+  //below is buggy, not always reloading
   setTimeout(() => {
+    console.log('test')
     location.reload()
   }, 1000)
 }
