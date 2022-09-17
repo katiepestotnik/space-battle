@@ -146,7 +146,10 @@ const quitGame = () => {
   document.querySelector('.log').innerHTML = ''
   document.querySelector('.retreat').remove()
   document.querySelector('.atk-container').remove()
-  document.querySelector('.instructions').remove()
+  const instrct = document.querySelector('.instructions')
+  if (instrct !== null) {
+    instrct.remove()
+  }
   //below is buggy, not always reloading
   setTimeout(() => {
     console.log('test')
@@ -234,7 +237,6 @@ const enterprise = {
     }
   },
 };
-
 //event listeners
 document.querySelector('.retreat').addEventListener('click', quitGame)
 document.querySelector('.romulans').addEventListener('click', romulanAttack)
