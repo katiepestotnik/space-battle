@@ -117,18 +117,17 @@ const enemyImg = (src) => {
   enemyImg.src = src
   document.querySelector('.enterprise-img').append(enemyImg)
 }
-const romulanAttack = () => {
+const enemyAttack = (img, alien) => {
   showImg("https://dwgyu36up6iuz.cloudfront.net/heru80fdn/image/upload/c_fill,d_placeholder_wired.png,fl_progressive,g_face,h_1080,q_80,w_1920/v1469050573/wired_nasa-fact-checks-star-trek-s-starship-enterprise.jpg")
-  enemyImg('https://external-preview.redd.it/uFRXjhr1EFHL3zKQc5flwaGOwqb9gQbrF6uKbH2NiLM.jpg?auto=webp&s=514aa5a9ea54a3a0130dd87dbb764339a97c6e7d')
+  enemyImg(img)
   while (enterprise.hull > 0) {
-    aliens.forEach((alien, idx) => {
-      while (aliens[0].hull > 0 && enterprise.hull >0) {
-        enterprise.attack(aliens[0])
-        if (aliens[0].hull > 0) {
-          aliens[0].attack()
+      while (alien.hull > 0 && enterprise.hull >0) {
+        enterprise.attack(alien)
+        if (alien.hull > 0) {
+          alien.attack()
         }
-        if (aliens[0].hull <= 0) {
-          document.querySelector('.winner').innerHTML = `The ${aliens[0].name} ship has been destroyed, Enterprise is victorious!!`
+        if (alien.hull <= 0) {
+          document.querySelector('.winner').innerHTML = `The ${alien.name} ship has been destroyed, Enterprise is victorious!!`
           break
         }
         if (enterprise.hull <= 0) {
@@ -138,35 +137,27 @@ const romulanAttack = () => {
           break
         }
       }
-    })
-    if (aliens[0].hull <= 0) break
+    if (alien.hull <= 0) break
   }
+
+}
+const romulanAttack = () => {
+  enemyAttack('https://external-preview.redd.it/uFRXjhr1EFHL3zKQc5flwaGOwqb9gQbrF6uKbH2NiLM.jpg?auto=webp&s=514aa5a9ea54a3a0130dd87dbb764339a97c6e7d', aliens[0])
 }
 const cardassiansAttack = () => {
-  showImg("https://dwgyu36up6iuz.cloudfront.net/heru80fdn/image/upload/c_fill,d_placeholder_wired.png,fl_progressive,g_face,h_1080,q_80,w_1920/v1469050573/wired_nasa-fact-checks-star-trek-s-starship-enterprise.jpg")
-  enemyImg('https://www.st-minutiae.com/articles/dominionwar/image_5-2.jpg')
-  while (enterprise.hull > 0) {
-    aliens.forEach((alien, idx) => {
-      while (aliens[1].hull > 0 && enterprise.hull >0) {
-        enterprise.attack(aliens[1])
-        if (aliens[1].hull > 0) {
-          aliens[1].attack()
-        }
-        if (aliens[1].hull <= 0) {
-          document.querySelector('.winner').innerHTML = `The ${aliens[1].name} ship has been destroyed, Enterprise is victorious!!`
-          break
-        }
-        if (enterprise.hull <= 0) {
-          const message = document.querySelector('.winner')
-          message.innerHTML = `Enterprise detroyed!`
-          message.style.color = '#ff0a0a'
-          document.querySelector('.attacker').remove()
-          break
-        }
-      }
-    })
-    if (aliens[1].hull <= 0) break
-  }
+  enemyAttack('https://www.st-minutiae.com/articles/dominionwar/image_5-2.jpg', aliens[1])
+}
+const borgAttack = () => {
+  enemyAttack('https://res.cloudinary.com/jerrick/image/upload/f_jpg,fl_progressive,q_auto,w_1024/ypoe7zw5tdfteycpa2jw.jpg', aliens[2])
+}
+const klingonsAttack = () => {
+  enemyAttack('http://www.ditl.org/Images/D/D7General3.jpg', aliens[3])
+}
+const tholiansAttack = () => {
+  enemyAttack('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRn5VuhVFpAG4S7cU8Z54UVa4OL13byEyXwEw&usqp=CAU', aliens[4])
+}
+const breenAttack = () => {
+  enemyAttack('https://pwimages-a.akamaihd.net/arc/8c/86/8c865588eb409d2eb4dbf1ccefd5d5b61480433664.jpg', aliens[5])
 }
 const quitGame = () => {
   document.querySelector('.message').innerHTML = `All hands, RETREAT! Engage warp 7`
@@ -177,8 +168,12 @@ const quitGame = () => {
   }, 2000)
 }
 
-document.querySelector('.attacker').addEventListener('click', romulanAttack)
 document.querySelector('.retreat').addEventListener('click', quitGame)
+document.querySelector('.romulans').addEventListener('click', romulanAttack)
 document.querySelector('.cardassians').addEventListener('click', cardassiansAttack)
+document.querySelector('.borg').addEventListener('click', borgAttack)
+document.querySelector('.klingons').addEventListener('click', klingonsAttack)
+document.querySelector('.tholians').addEventListener('click', tholiansAttack)
+document.querySelector('.breen').addEventListener('click', breenAttack)
 
 
