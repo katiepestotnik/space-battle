@@ -145,6 +145,8 @@ const quitGame = () => {
   showImg('https://qph.cf2.quoracdn.net/main-qimg-fe15e77a9dea4f2973f6f5bb533e81f3-lq')
   document.querySelector('.log').innerHTML = ''
   document.querySelector('.retreat').remove()
+  document.querySelector('.atk-container').remove()
+  document.querySelector('.instructions').remove()
   setTimeout(() => {
     location.reload()
   }, 1000)
@@ -211,12 +213,12 @@ const aliens = [
 //enterprise ship object
 const enterprise = {
     hull: randomGenerator(15, 20),
-    firepower: randomGenerator(2, 8),
+    firepower: randomGenerator(4, 8),
     accuracy: 7,
   attack: function (alien) {
     const message = document.createElement('p')
     message.style.color = '#6aff22'
-    message.innerHTML = `Enterprise attacking the ${alien.name} with ${this.firepower} phasers and the ${alien.name} ship has a hull strength of ${alien.hull}.`
+    message.innerHTML = `Enterprise attacking the ${alien.name} with phaser cannons and the ${alien.name} ship has a hull strength of ${alien.hull}.`
     document.querySelector('.log').append(message)
     alien.hull -= this.firepower
     if (alien.hull <= 0) {
