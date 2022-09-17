@@ -112,17 +112,23 @@ const showImg = (src) => {
   document.querySelector('.enterprise-img').innerHTML = ''
   document.querySelector('.enterprise-img').append(enterpriseImg)
 }
+const enemyImg = (src) => {
+  const enemyImg = document.createElement('img')
+  enemyImg.src = src
+  document.querySelector('.enterprise-img').append(enemyImg)
+}
 const playGame = () => {
   showImg("https://dwgyu36up6iuz.cloudfront.net/heru80fdn/image/upload/c_fill,d_placeholder_wired.png,fl_progressive,g_face,h_1080,q_80,w_1920/v1469050573/wired_nasa-fact-checks-star-trek-s-starship-enterprise.jpg")
+  enemyImg('https://external-preview.redd.it/uFRXjhr1EFHL3zKQc5flwaGOwqb9gQbrF6uKbH2NiLM.jpg?auto=webp&s=514aa5a9ea54a3a0130dd87dbb764339a97c6e7d')
   while (enterprise.hull > 0) {
     aliens.forEach((alien, idx) => {
-      while (alien.hull > 0 && enterprise.hull >0) {
-        enterprise.attack(alien)
-        if (alien.hull > 0) {
-          alien.attack()
+      while (aliens[0].hull > 0 && enterprise.hull >0) {
+        enterprise.attack(aliens[0])
+        if (aliens[0].hull > 0) {
+          aliens[0].attack()
         }
-        if (alien.hull <= 0 && idx === 5) {
-          document.querySelector('.winner').innerHTML = `All enemy ships destroyed, Enterprise is victorious!!`
+        if (aliens[0].hull <= 0) {
+          document.querySelector('.winner').innerHTML = `The ${aliens[0].name} ship has been destroyed, Enterprise is victorious!!`
           break
         }
         if (enterprise.hull <= 0) {
@@ -133,7 +139,7 @@ const playGame = () => {
         }
       }
     })
-    if (aliens[5].hull <= 0) break
+    if (aliens[0].hull <= 0) break
   }
 }
 const quitGame = () => {
