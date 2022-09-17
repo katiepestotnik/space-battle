@@ -51,6 +51,8 @@ const allDestroyed = () => {
     const message = document.querySelector('.winner')
     message.innerHTML = 'All enemy ships have been destroyed, retreat to repair damage to your hull.'
     message.style.color = '#f0844b'
+    document.querySelector('.retreat').style.display = 'inline-block'
+    document.querySelector('.retreat').style.margin = '0 auto'
   }
 }
 
@@ -104,9 +106,12 @@ const enemyAttack = (img, alien) => {
         }
         if (enterprise.hull <= 0) {
           document.querySelector('.atk-container').remove()
+          document.querySelector('.instructions').remove()
           const message = document.querySelector('.winner')
           message.innerHTML = `Enterprise detroyed!`
           message.style.color = '#ff0a0a'
+          document.querySelector('.retreat').style.display = 'inline-block'
+          document.querySelector('.retreat').style.margin = '0 auto'
           break
         }
       }
@@ -136,12 +141,13 @@ const breenAttack = () => {
 
 // quitting game function - add retreating enterprise image and page reload  with setTimeout() after 1.5 seconds to restart game
 const quitGame = () => {
-  document.querySelector('.message').innerHTML = `All hands, RETREAT! Engage warp 7`
+  document.querySelector('.message').innerHTML = `BATTLE OVER`
   showImg('https://qph.cf2.quoracdn.net/main-qimg-fe15e77a9dea4f2973f6f5bb533e81f3-lq')
   document.querySelector('.log').innerHTML = ''
+  document.querySelector('.retreat').remove()
   setTimeout(() => {
     location.reload()
-  }, 1500)
+  }, 1000)
 }
 
 //enemy ship objects array
@@ -204,8 +210,8 @@ const aliens = [
 
 //enterprise ship object
 const enterprise = {
-    hull: 20,
-    firepower: 5,
+    hull: randomGenerator(15, 20),
+    firepower: randomGenerator(2, 8),
     accuracy: 7,
   attack: function (alien) {
     const message = document.createElement('p')
