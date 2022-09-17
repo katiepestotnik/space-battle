@@ -1,7 +1,3 @@
-//alien ship randoms
-//hull between 3 and 6
-//firepower between 2 and 4
-// accuracy between .6 and .8
 const randomGenerator = (min, max) => {
   min = Math.ceil(min)
   max = Math.floor(max)
@@ -12,11 +8,12 @@ const randomAccuracy = (min, max) => {
 };
 const alienAttack = (name, accuracy, firepower) => {
   const alienAttack = document.createElement('p')
+  alienAttack.style.color = '#6aff22'
   alienAttack.innerHTML = `${name} attacking...`
   document.querySelector('.log').append(alienAttack)
-  console.log(accuracy)
   if (Math.random() <= accuracy) {
     const precise = document.createElement('p')
+    precise.style.color = '#6aff22'
     precise.innerHTML = `${name} accuracy high, fire!`
     document.querySelector('.log').append(precise)
     enterprise.hull -= firepower
@@ -25,11 +22,11 @@ const alienAttack = (name, accuracy, firepower) => {
     document.querySelector('.log').append(success)
   } else {
     const miss = document.createElement('p')
+    miss.style.color = 'red'
     miss.innerHTML = `${name} miss attack!`
     document.querySelector('.log').append(miss)
   }
 }
-
 const aliens = [
   (ship1 = {
     name: 'Romulans',
@@ -92,6 +89,7 @@ const enterprise = {
     accuracy: 7,
   attack: function (alien) {
     const message = document.createElement('p')
+    message.style.color = '#ff0a0a'
     message.innerHTML = `Enterprise attacking the ${alien.name} with ${this.firepower} phasers and the ${alien.name} ship has a hull strength of ${alien.hull}.`
     document.querySelector('.log').append(message)
     alien.hull -= this.firepower
