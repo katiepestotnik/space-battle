@@ -84,7 +84,7 @@ const aliens = [
   }),
 ]
 const enterprise = {
-    hull: 20,
+    hull: 2,
     firepower: 5,
     accuracy: 7,
   attack: function (alien) {
@@ -144,9 +144,11 @@ const enemyAttack = (img, alien) => {
           if (alien.name === 'Breen') {
             document.querySelector('.breen').remove()
           }
+
           break
         }
         if (enterprise.hull <= 0) {
+          document.querySelector('.atk-container').remove()
           const message = document.querySelector('.winner')
           message.innerHTML = `Enterprise detroyed!`
           message.style.color = '#ff0a0a'

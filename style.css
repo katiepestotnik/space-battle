@@ -69,10 +69,11 @@ img{
     text-align: center;
 }
 .winner {
-    color: #22caff;
+    color: #1120ff;
     font-family: 'Kanit', sans-serif;
     font-size: 2rem;
     text-align: center;
+    padding: 2rem;
 }
 p {
     color: #fff;
@@ -84,4 +85,8 @@ p {
     text-align: center;
     width: 80%;
     background-color: #000;
+}
+.title{
+    padding: 2rem;
+    font-family: 'Audiowide', sans-serif;;
 }
