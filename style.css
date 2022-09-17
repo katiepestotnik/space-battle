@@ -96,3 +96,12 @@ p {
     padding: 2rem;
     font-family: 'Audiowide', sans-serif;;
 }
+.logo{
+    display: flex;
+    justify-content: space-between;
+    width: 100%
+}
+.logo > img {
+    width: 100px;
+    height: 100px;
+}
