@@ -1,4 +1,7 @@
-//functions for game
+// 1. functions
+// 2. aliens array
+// 3. enterprise object
+// 4. event listeners
 
 //random number generator for integers
 const randomGenerator = (min, max) => {
@@ -6,10 +9,12 @@ const randomGenerator = (min, max) => {
   max = Math.floor(max)
   return Math.floor(Math.random() * (max - min + 1) + min)
 };
+
 //random number generator for floats
 const randomAccuracy = (min, max) => {
   return parseFloat((Math.random() * (max - min) + min).toFixed(1))
 };
+
 //function for alien attack used in the aliens array objects
 const alienAttack = (name, accuracy, firepower) => {
   const alienAttack = document.createElement('p')
@@ -32,7 +37,8 @@ const alienAttack = (name, accuracy, firepower) => {
     document.querySelector('.log').append(miss)
   }
 }
-//function for when all the ships are destroyed - remove instruction message and change winner message
+
+//function for when all the ships are destroyed - remove instruction message and change winner message - used in enemyAttack()
 const allDestroyed = () => {
   const romulans = document.querySelector('.romulans')
   const cardassians = document.querySelector('.cardassians')
@@ -55,6 +61,7 @@ const showImg = (src) => {
   document.querySelector('.enterprise-img').innerHTML = ''
   document.querySelector('.enterprise-img').append(enterpriseImg)
 }
+
 //function to place image of the specific attacking alien ship
 const enemyImg = (src) => {
   const enemyImg = document.createElement('img')
@@ -105,9 +112,9 @@ const enemyAttack = (img, alien) => {
       }
     if (alien.hull <= 0) break
   }
-
 }
-//event listener functions using enemyAttack
+
+//event listener functions using enemyAttack and each alien associated with button
 const romulanAttack = () => {
   enemyAttack('https://external-preview.redd.it/uFRXjhr1EFHL3zKQc5flwaGOwqb9gQbrF6uKbH2NiLM.jpg?auto=webp&s=514aa5a9ea54a3a0130dd87dbb764339a97c6e7d', aliens[0])
 }
@@ -126,6 +133,8 @@ const tholiansAttack = () => {
 const breenAttack = () => {
   enemyAttack('https://pwimages-a.akamaihd.net/arc/8c/86/8c865588eb409d2eb4dbf1ccefd5d5b61480433664.jpg', aliens[5])
 }
+
+// quitting game function - add retreating enterprise image and page reload  with setTimeout() after 1.5 seconds to restart game
 const quitGame = () => {
   document.querySelector('.message').innerHTML = `All hands, RETREAT! Engage warp 7`
   showImg('https://qph.cf2.quoracdn.net/main-qimg-fe15e77a9dea4f2973f6f5bb533e81f3-lq')
@@ -192,6 +201,7 @@ const aliens = [
     },
   }),
 ]
+
 //enterprise ship object
 const enterprise = {
     hull: 20,
@@ -216,7 +226,6 @@ const enterprise = {
 };
 
 //event listeners
-
 document.querySelector('.retreat').addEventListener('click', quitGame)
 document.querySelector('.romulans').addEventListener('click', romulanAttack)
 document.querySelector('.cardassians').addEventListener('click', cardassiansAttack)
