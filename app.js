@@ -41,7 +41,7 @@ const aliens = [
     },
   }),
   (ship2 = {
-    name: 'Cardasians',
+    name: 'Cardassians',
     hull: randomGenerator(3, 6),
     firepower: randomGenerator(2, 4),
     accuracy: randomAccuracy(.6, .8),
@@ -117,7 +117,7 @@ const enemyImg = (src) => {
   enemyImg.src = src
   document.querySelector('.enterprise-img').append(enemyImg)
 }
-const playGame = () => {
+const romulanAttack = () => {
   showImg("https://dwgyu36up6iuz.cloudfront.net/heru80fdn/image/upload/c_fill,d_placeholder_wired.png,fl_progressive,g_face,h_1080,q_80,w_1920/v1469050573/wired_nasa-fact-checks-star-trek-s-starship-enterprise.jpg")
   enemyImg('https://external-preview.redd.it/uFRXjhr1EFHL3zKQc5flwaGOwqb9gQbrF6uKbH2NiLM.jpg?auto=webp&s=514aa5a9ea54a3a0130dd87dbb764339a97c6e7d')
   while (enterprise.hull > 0) {
@@ -142,6 +142,32 @@ const playGame = () => {
     if (aliens[0].hull <= 0) break
   }
 }
+const cardassiansAttack = () => {
+  showImg("https://dwgyu36up6iuz.cloudfront.net/heru80fdn/image/upload/c_fill,d_placeholder_wired.png,fl_progressive,g_face,h_1080,q_80,w_1920/v1469050573/wired_nasa-fact-checks-star-trek-s-starship-enterprise.jpg")
+  enemyImg('https://www.st-minutiae.com/articles/dominionwar/image_5-2.jpg')
+  while (enterprise.hull > 0) {
+    aliens.forEach((alien, idx) => {
+      while (aliens[1].hull > 0 && enterprise.hull >0) {
+        enterprise.attack(aliens[1])
+        if (aliens[1].hull > 0) {
+          aliens[1].attack()
+        }
+        if (aliens[1].hull <= 0) {
+          document.querySelector('.winner').innerHTML = `The ${aliens[1].name} ship has been destroyed, Enterprise is victorious!!`
+          break
+        }
+        if (enterprise.hull <= 0) {
+          const message = document.querySelector('.winner')
+          message.innerHTML = `Enterprise detroyed!`
+          message.style.color = '#ff0a0a'
+          document.querySelector('.attacker').remove()
+          break
+        }
+      }
+    })
+    if (aliens[1].hull <= 0) break
+  }
+}
 const quitGame = () => {
   document.querySelector('.message').innerHTML = `All hands, RETREAT! Engage warp 7`
   showImg('https://qph.cf2.quoracdn.net/main-qimg-fe15e77a9dea4f2973f6f5bb533e81f3-lq')
@@ -151,7 +177,8 @@ const quitGame = () => {
   }, 2000)
 }
 
-document.querySelector('.attacker').addEventListener('click', playGame)
+document.querySelector('.attacker').addEventListener('click', romulanAttack)
 document.querySelector('.retreat').addEventListener('click', quitGame)
+document.querySelector('.cardassians').addEventListener('click', cardassiansAttack)
 
 
