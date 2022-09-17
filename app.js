@@ -17,11 +17,11 @@ const alienAttack = (name, accuracy, firepower) => {
   console.log(accuracy)
   if (Math.random() <= accuracy) {
     const precise = document.createElement('p')
-    precise.innerHTML = `${name} accuracy high, attack!`
+    precise.innerHTML = `${name} accuracy high, fire!`
     document.querySelector('.log').append(precise)
     enterprise.hull -= firepower
     const success = document.createElement('p')
-    success.innerHTML = `After successful attack by the ${name}, Enterprise is at ${enterprise.hull} strength.`
+    success.innerHTML = `After a successful attack by the ${name}, Enterprise's hull strength is at ${enterprise.hull} units.`
     document.querySelector('.log').append(success)
   } else {
     const miss = document.createElement('p')
@@ -92,16 +92,16 @@ const enterprise = {
     accuracy: 7,
   attack: function (alien) {
     const message = document.createElement('p')
-    message.innerHTML = `Enterprise attacking the ${alien.name} with ${this.firepower} phasers and the ${alien.name} ship as a hull strength of ${alien.hull}`
+    message.innerHTML = `Enterprise attacking the ${alien.name} with ${this.firepower} phasers and the ${alien.name} ship has a hull strength of ${alien.hull}.`
     document.querySelector('.log').append(message)
     alien.hull -= this.firepower
     if (alien.hull <= 0) {
       const destroyed = document.createElement('p')
-      destroyed.innerHTML = `The ${alien.name} are destroyed. Their hull strength is ${alien.hull}`
+      destroyed.innerHTML = `The ${alien.name} have been destroyed. Their hull strength is ${alien.hull} units.`
       document.querySelector('.log').append(destroyed)
     } else {
       const survived = document.createElement('p')
-      survived.innerHTML = `Enterprise attacked with ${this.firepower} phasers. The ${alien.name} shield levels are now at ${alien.hull} strength.`
+      survived.innerHTML = `After Enterprise attacked, the ${alien.name} hull strength levels are now at ${alien.hull} units.`
       document.querySelector('.log').append(survived)
     }
   },
@@ -109,6 +109,7 @@ const enterprise = {
 const showImg = (src) => {
   const enterpriseImg = document.createElement('img')
   enterpriseImg.src = src
+  document.querySelector('.enterprise-img').innerHTML = ''
   document.querySelector('.enterprise-img').append(enterpriseImg)
 }
 const playGame = () => {
@@ -126,7 +127,7 @@ const playGame = () => {
         }
         if (enterprise.hull <= 0) {
           const message = document.querySelector('.winner')
-          message.innerHTML = `Enterprise detroyed`
+          message.innerHTML = `Enterprise detroyed!`
           message.style.color = '#ff0a0a'
           break
         }
@@ -138,9 +139,10 @@ const playGame = () => {
 const quitGame = () => {
   document.querySelector('.message').innerHTML = `All hands, RETREAT! Engage warp 7`
   showImg('https://qph.cf2.quoracdn.net/main-qimg-fe15e77a9dea4f2973f6f5bb533e81f3-lq')
+  document.querySelector('.log').innerHTML = ''
   setTimeout(() => {
     location.reload()
-  }, 900)
+  }, 2000)
 }
 
 document.querySelector('.attacker').addEventListener('click', playGame)
