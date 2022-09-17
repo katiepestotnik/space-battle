@@ -126,6 +126,24 @@ const enemyAttack = (img, alien) => {
         }
         if (alien.hull <= 0) {
           document.querySelector('.winner').innerHTML = `The ${alien.name} ship has been destroyed, Enterprise is victorious!!`
+          if (alien.name === 'Romulans') {
+            document.querySelector('.romulans').remove()
+          }
+          if (alien.name === 'Cardassians') {
+            document.querySelector('.cardassians').remove()
+          }
+          if (alien.name === 'Borg') {
+            document.querySelector('.borg').remove()
+          }
+          if (alien.name === 'Klingons') {
+            document.querySelector('.klingons').remove()
+          }
+          if (alien.name === 'Tholians') {
+            document.querySelector('.tholians').remove()
+          }
+          if (alien.name === 'Breen') {
+            document.querySelector('.breen').remove()
+          }
           break
         }
         if (enterprise.hull <= 0) {
@@ -163,7 +181,7 @@ const quitGame = () => {
   document.querySelector('.log').innerHTML = ''
   setTimeout(() => {
     location.reload()
-  }, 2000)
+  }, 1000)
 }
 
 document.querySelector('.retreat').addEventListener('click', quitGame)
