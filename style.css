@@ -80,10 +80,12 @@ img{
     font-family: 'Kanit', sans-serif;
     font-size: 2rem;
     padding: 1rem;
+    font-family: 'Audiowide', sans-serif;
 }
 p {
     color: #fff;
     font-size: 1.5rem;
+    font-family: 'Kanit', sans-serif;
 }
 
 .log {
@@ -94,7 +96,7 @@ p {
 }
 .title{
     padding: 2rem;
-    font-family: 'Audiowide', sans-serif;;
+    font-family: 'Audiowide', sans-serif;
 }
 .logo{
     display: flex;
